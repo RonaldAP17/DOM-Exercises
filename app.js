@@ -24,18 +24,47 @@ taskList.addEventListener('click', (event)=>{
 
 //Exercise 2 //
 
-let galleryContainer = document.getElementById('cards-container');
+let cardsContainer = document.getElementById('cards-container');
 
 for(let i=0; i < 3; i++){
-    let cardContainer = document.createElement('div');
-    cardContainer.classList.add('card');
+    let card = document.createElement('div');
+    card.classList.add('card');
     let titleContainer = document.createElement('h2');
     let textContainer = document.createElement('p');
     titleContainer.textContent = 'Title ' + (i+1);
     textContainer.textContent = 'Description of the project ' + (i+1);
-    cardContainer.append(titleContainer);
-    cardContainer.append(textContainer);
-    galleryContainer.append(cardContainer);
+    card.append(titleContainer);
+    card.append(textContainer);
+    cardsContainer.append(card);
 }
+
+
+//Exercise 3//
+
+let galleryContainer = document.getElementById("gallery-container");
+let imageForm = document.getElementById("add-image-form");
+let addImageButton = document.querySelector(".add-image");
+
+imageForm.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    image = document.createElement("img");
+    image.classList.add("image-form");
+    let imageUrl = document.querySelector(".image-url");
+    if(!imageUrl.value){
+        alert('You need to put a link on the input field.');
+    }
+    else{
+        image.setAttribute('src', imageUrl.value);
+        galleryContainer.append(image);
+        console.log('Image created, URL: ' + imageUrl);
+        imageUrl.value = '';
+    }
+
+    image.addEventListener('click', (event)=>{
+        event.target.remove();
+    })
+})
+
+
 
 
